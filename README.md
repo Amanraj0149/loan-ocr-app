@@ -131,25 +131,6 @@ See the attached PDF for full details:
 
 ---
 
-## 📌 Future Enhancements
-
-- Use AI models like LayoutLM for layout-aware field extraction
-- Export data to PDF or Excel
-- Admin dashboard to view & manage submissions
-- User authentication for staff and admins
-
----
-
-## 👨‍💻 Author
-
-**Aman Raj**  
-GitHub: [https://github.com/your-username](https://github.com/your-username)
-
----
-
-
----
-
 ## 🖼️ UI Preview
 
 Below is a screenshot of the Review & Correct Extracted Data form where users can manually verify and edit the OCR-extracted information:
@@ -174,5 +155,29 @@ This ensures data accuracy and makes the system human-verifiable before sending 
 | Editable UI | Input Data |
 |-------------|------------------|
 | ![Editable OCR Fields](ocr_field_editable_ui.png) | ![Missing Field Error](ocr_missing_field_error.png) |
+
+
+----
+
+
+----
+## 📌 Future Enhancements
+
+- Use AI models like LayoutLM for layout-aware field extraction
+- Export data to PDF or Excel
+- Admin dashboard to view & manage submissions
+- User authentication for staff and admins
+
+---
+
+## 👨‍💻 Author
+
+**Aman Raj**  
+GitHub: [https://github.com/your-username](https://github.com/your-username)
+
+---
+
+
+---
 
 
