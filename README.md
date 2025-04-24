@@ -171,7 +171,7 @@ They can:
 
 This ensures data accuracy and makes the system human-verifiable before sending to the backend.
 
-| Editable UI | Validation Alert |
+| Editable UI | Input Data |
 |-------------|------------------|
 | ![Editable OCR Fields](ocr_field_editable_ui.png) | ![Missing Field Error](ocr_missing_field_error.png) |
 
