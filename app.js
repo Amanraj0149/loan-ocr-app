@@ -1,61 +1,62 @@
 const express = require("express");
-const multer = require("multer"); // for handling file uploads
+const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const sharp = require("sharp"); // for image preprocessing
-const Tesseract = require("tesseract.js"); // for OCR (text extraction)
-const mongoose = require("mongoose"); // to connect and save data to MongoDB
-const { body, validationResult } = require("express-validator"); // to validate form data
-require("dotenv").config(); // to load database connection string from .env
+const sharp = require("sharp");
+const Tesseract = require("tesseract.js");
+const mongoose = require("mongoose");
+const { body, validationResult } = require("express-validator");
+require("dotenv").config();
 
 const Application = require("./models/Application");
 const app = express();
 
-// Parse form data from POST requests
-app.use(express.urlencoded({ extended: true }));
+// 🔐 Ensure upload folders exist (for Render deployment)
+const folders = ["uploads", "processed"];
+folders.forEach(folder => {
+  if (!fs.existsSync(folder)) {
+    fs.mkdirSync(folder);
+    console.log(`✅ Created folder: ${folder}`);
+  }
+});
 
-// Set EJS as the template engine
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Configure file upload location and naming
+// File upload settings
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
 });
 const upload = multer({ storage });
 
-// Connect to MongoDB (local or Atlas)
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log("✅ Connected to MongoDB"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
-// Home page (upload form)
+// Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Handle file upload and extract text from document
+// Upload and process OCR
 app.post("/upload", upload.single("loanDocument"), async (req, res) => {
   try {
     const originalPath = req.file.path;
     const processedPath = `processed/processed_${Date.now()}.png`;
 
-    // Preprocess image: convert to grayscale and normalize contrast
     await sharp(originalPath).grayscale().normalize().toFile(processedPath);
 
-    // Perform OCR using Tesseract on the cleaned image
     const result = await Tesseract.recognize(processedPath, "eng");
-
-    // Delete the temp processed image
     fs.unlinkSync(processedPath);
 
     const text = result.data.text;
     const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
 
-    // Try to find values in text using keywords
     let name = "Not found", address = "Not found", income = "Not found", loanAmount = "Not found";
     lines.forEach(line => {
       if (/name\s*[:\-]/i.test(line)) name = line.split(/[:\-]/)[1]?.trim() || name;
@@ -64,7 +65,6 @@ app.post("/upload", upload.single("loanDocument"), async (req, res) => {
       else if (/loan\s*amount\s*[:\-]/i.test(line)) loanAmount = line.split(/[:\-]/)[1]?.trim() || loanAmount;
     });
 
-    // Show results to the user for manual review/edit
     res.render("result", {
       extractedData: { name, address, income, loanAmount, fullText: text }
     });
@@ -74,25 +74,20 @@ app.post("/upload", upload.single("loanDocument"), async (req, res) => {
   }
 });
 
-// Handle final form submission with validation
+// Submit route with validation
 app.post("/submit", [
-  body("name")
-    .isLength({ min: 2 }).withMessage("Name too short")
+  body("name").isLength({ min: 2 }).withMessage("Name too short")
     .custom(value => value.toLowerCase() !== "not found").withMessage("Please enter a valid name."),
-  body("address")
-    .isLength({ min: 5 }).withMessage("Address too short")
+  body("address").isLength({ min: 5 }).withMessage("Address too short")
     .custom(value => value.toLowerCase() !== "not found").withMessage("Please enter a valid address."),
-  body("income")
-    .matches(/^\d[\d,]*$/).withMessage("Invalid income format")
+  body("income").matches(/^\d[\d,]*$/).withMessage("Invalid income format")
     .custom(value => value.toLowerCase() !== "not found").withMessage("Please enter a valid income."),
-  body("loanAmount")
-    .matches(/^\d[\d,]*$/).withMessage("Invalid loan amount format")
+  body("loanAmount").matches(/^\d[\d,]*$/).withMessage("Invalid loan amount format")
     .custom(value => value.toLowerCase() !== "not found").withMessage("Please enter a valid loan amount.")
 ], async (req, res) => {
   const errors = validationResult(req);
   const { name, address, income, loanAmount } = req.body;
 
-  // If validation fails, reload result page with errors
   if (!errors.isEmpty()) {
     return res.status(400).render("result", {
       extractedData: { name, address, income, loanAmount, fullText: "Validation failed. Please correct the fields." },
@@ -100,12 +95,9 @@ app.post("/submit", [
     });
   }
 
-  // Save to database
   try {
     const appData = new Application({ name, address, income, loanAmount });
     await appData.save();
-
-    // Show confirmation page
     res.render("success", { name, address, income, loanAmount });
   } catch (err) {
     console.error("Mongo Save Error:", err);
@@ -113,6 +105,6 @@ app.post("/submit", [
   }
 });
 
-// Start the server
+// Start the app
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
