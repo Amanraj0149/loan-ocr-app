@@ -1,0 +1,22 @@
+{
+  "name": "loan3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "mongoose": "^8.13.2",
+    "multer": "^1.4.5-lts.2",
+    "sharp": "^0.34.1",
+    "tesseract.js": "^6.0.1"
+  }
+}

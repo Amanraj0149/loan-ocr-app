@@ -1,0 +1,67 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Loan Document</title>
+</head>
+<body>
+  <h1>Upload Loan Application Document</h1>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="loanDocument" accept="image/*,.pdf" required />
+    <button type="submit">Upload and Process</button>
+  </form>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Loan Document</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: linear-gradient(to right, #e0f7fa, #e1bee7);
+      color: #333;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #4a148c;
+      margin-bottom: 20px;
+    }
+    .info-box {
+      background: white;
+      padding: 25px;
+      margin: 20px auto;
+      width: 60%;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      width: 90%;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #7b1fa2;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload Loan Application Document</h1>
+  <div class="info-box">
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="loanDocument" accept="image/*,.pdf" required />
+      <button type="submit">Upload and Process</button>
+    </form>
+  </div>
+</body>
+</html>
+

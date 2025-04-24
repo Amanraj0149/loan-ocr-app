@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review Extracted Data</title>
+  <style>
+    /* Basic page styling with gradient background */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: linear-gradient(to right, #e0f7fa, #e1bee7);
+      color: #333;
+      padding: 40px;
+      text-align: center;
+    }
+
+    /* Heading color and spacing */
+    h1 {
+      color: #4a148c;
+      margin-bottom: 20px;
+    }
+
+    /* White box to show form nicely */
+    .info-box {
+      background: white;
+      padding: 25px;
+      margin: 20px auto;
+      width: 60%;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    /* Common style for inputs, buttons, and links */
+    input, button, a {
+      display: block;
+      margin-top: 10px;
+      padding: 10px;
+      width: 95%;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    /* Style for buttons and anchor hover effects */
+    button, a {
+      background-color: #7b1fa2;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover, a:hover {
+      background-color: #4a148c;
+    }
+
+    /* Raw OCR text background */
+    pre {
+      background: #f3e5f5;
+      padding: 15px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+
+    /* Error message color */
+    ul {
+      color: red;
+      padding-left: 20px;
+    }
+
+    /* Special red border + background if field is "Not found" */
+    .input-error {
+      border: 2px solid #d32f2f;
+      background-color: #ffebee;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    /* Labels bold for readability */
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Review & Correct Extracted Data</h1>
+
+  <div class="info-box">
+    <!-- Agar form validation se errors aaye toh yeh section dikhayega -->
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <ul>
+        <% errors.forEach(err => { %>
+          <li><%= err.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <!-- User ko OCR se nikale gaye data ka form dikh raha hai for editing -->
+    <form action="/submit" method="POST">
+      <!-- Name field, warning emoji agar "Not found" hai -->
+      <label><%= extractedData.name === 'Not found' ? '⚠️ Name:' : 'Name:' %></label>
+      <input type="text" name="name" value="<%= extractedData.name %>" 
+        class="<%= extractedData.name === 'Not found' ? 'input-error' : '' %>" required />
+
+      <!-- Address -->
+      <label><%= extractedData.address === 'Not found' ? '⚠️ Address:' : 'Address:' %></label>
+      <input type="text" name="address" value="<%= extractedData.address %>" 
+        class="<%= extractedData.address === 'Not found' ? 'input-error' : '' %>" required />
+
+      <!-- Income -->
+      <label><%= extractedData.income === 'Not found' ? '⚠️ Income:' : 'Income:' %></label>
+      <input type="text" name="income" value="<%= extractedData.income %>" 
+        class="<%= extractedData.income === 'Not found' ? 'input-error' : '' %>" required />
+
+      <!-- Loan Amount -->
+      <label><%= extractedData.loanAmount === 'Not found' ? '⚠️ Loan Amount:' : 'Loan Amount:' %></label>
+      <input type="text" name="loanAmount" value="<%= extractedData.loanAmount %>" 
+        class="<%= extractedData.loanAmount === 'Not found' ? 'input-error' : '' %>" required />
+
+      <!-- Final submit button -->
+      <button type="submit">Submit Final Data</button>
+    </form>
+
+    <!-- Poora OCR se aya raw text yahan show hota hai for reference -->
+    <h2>Raw OCR Text</h2>
+    <pre><%= extractedData.fullText %></pre>
+
+    <!-- Link to go back and upload new file -->
+    <a href="/">Upload New Document</a>
+  </div>
+</body>
+</html>

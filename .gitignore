@@ -1,0 +1,21 @@
+# ✅ Ignore sensitive config
+.env
+
+# ✅ Ignore dependencies
+node_modules/
+
+# ✅ Ignore uploaded and processed images (temporary runtime files)
+uploads/
+processed/
+
+# ✅ Ignore logs (if any logging is added)
+*.log
+
+# ✅ Ignore system files (Mac/Windows/VS Code)
+.DS_Store
+Thumbs.db
+.vscode/
+
+# ✅ Ignore build/output (if you use dist or build folders later)
+dist/
+build/
