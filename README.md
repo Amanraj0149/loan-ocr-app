@@ -4,6 +4,19 @@ This Node.js application automates the extraction and processing of key fields (
 
 ---
 
+## 🧩 Solution Features
+
+The project addresses key inefficiencies in manual loan processing by automating the following:
+
+- 📥 Scanned document intake with file upload
+- 🧼 Image preprocessing to enhance OCR results
+- 🔎 Text extraction using Tesseract OCR
+- ✍️ Manual correction UI to fix extraction errors
+- ✅ Data validation to prevent incorrect submissions
+- ☁️ Data integration into MongoDB for backend processing
+
+---
+
 ## 🚀 Features
 
 - 📤 Upload scanned loan application images
@@ -12,6 +25,17 @@ This Node.js application automates the extraction and processing of key fields (
 - ✍️ Manual correction of extracted fields (Name, Address, Income, Loan Amount)
 - ✅ Validation with express-validator
 - ☁️ Save validated applications in MongoDB Atlas
+
+---
+
+## ✅ Final Feature Review
+
+| Feature                 | ✅ Status | 🔍 Details                                                                 |
+|--------------------------|-----------|----------------------------------------------------------------------------|
+| Manual correction UI ✍️  | ✅ Done   | result.ejs allows users to review and edit OCR-extracted data              |
+| Image preprocessing 🧼   | ✅ Done   | sharp is used to grayscale and normalize images before OCR                 |
+| Field-level validation ✅ | ✅ Done   | Now uses express-validator for strict format and length checks            |
+| Backend integration ☁️   | ✅ Done   | Data is saved in MongoDB Atlas using a secure .env connection             |
 
 ---
 
@@ -65,7 +89,7 @@ cd loan-ocr-app
 npm install
 ```
 
-3. Create a .env file and add your MongoDB Atlas URI
+3. Create a `.env` file and add your MongoDB Atlas URI:
 
 ```env
 MONGO_URI=mongodb+srv://<username>:<password>@clustername.mongodb.net/loanocr?retryWrites=true&w=majority
@@ -96,13 +120,14 @@ Then open http://localhost:3000 in your browser.
 
 You can view the recorded demo video with voiceover here:
 
-📹 [Demo Video Link] (Replace with your uploaded video URL)
+📹 [Demo Video Link](#) ← Replace this with your video URL
 
 ---
 
 ## 📄 Report
 
-See the attached PDF: OCR_Loan_Processing_Project_Report.pdf
+See the attached PDF for full details:
+📘 OCR_Loan_Processing_Project_Report.pdf
 
 ---
 
@@ -117,5 +142,16 @@ See the attached PDF: OCR_Loan_Processing_Project_Report.pdf
 
 ## 👨‍💻 Author
 
-Aman Raj  
+**Aman Raj**  
 GitHub: [https://github.com/your-username](https://github.com/your-username)
+
+---
+
+
+---
+
+## 🖼️ UI Preview
+
+Below is a screenshot of the Review & Correct Extracted Data form where users can manually verify and edit the OCR-extracted information:
+
+![Loan OCR UI](ocr_form_ui_preview.png)
