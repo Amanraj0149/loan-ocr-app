@@ -155,3 +155,24 @@ GitHub: [https://github.com/your-username](https://github.com/your-username)
 Below is a screenshot of the Review & Correct Extracted Data form where users can manually verify and edit the OCR-extracted information:
 
 ![Loan OCR UI](ocr_form_ui_preview.png)
+
+
+----
+
+
+----
+## 🖼️ Manual Correction UI ✍️
+
+If the OCR engine fails to detect certain fields (e.g., Address = "Not found"), users are prompted with red error highlights and validation messages. This prevents submission until data is corrected.
+
+They can:
+- Manually edit fields before submission
+- Upload a new document if needed
+
+This ensures data accuracy and makes the system human-verifiable before sending to the backend.
+
+| Editable UI | Validation Alert |
+|-------------|------------------|
+| ![Editable OCR Fields](ocr_field_editable_ui.png) | ![Missing Field Error](ocr_missing_field_error.png) |
+
+
