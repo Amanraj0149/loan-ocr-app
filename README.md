@@ -127,7 +127,7 @@ You can view the recorded demo video with voiceover here:
 📄 Report
 You can download the full project report here:
 
-📘 LoanOcrProject_Report_CT20244436390.pdf
+📘![Project_Report]( LoanOcrProject_Report_CT20244436390.pdf)
 
 
 ---
@@ -174,7 +174,7 @@ This ensures data accuracy and makes the system human-verifiable before sending 
 ## 👨‍💻 Author
 
 **Aman Raj**  
-GitHub: [https://github.com/your-username](https://github.com/Amanraj0149)
+GitHub: [https://github.com/Amanraj0149](https://github.com/Amanraj0149)
 
 ---
 
