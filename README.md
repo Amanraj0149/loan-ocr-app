@@ -120,7 +120,7 @@ Then open http://localhost:3000 in your browser.
 
 You can view the recorded demo video with voiceover here:
 
-📹 [Demo Video Link](https://drive.google.com/file/d/1QKSvfDcFrZZ2CcFgkQB4t7ZifZL-B8_a/view?usp=drive_link)
+📹 [Demo Video Link](https://drive.google.com/file/d/1QKSvfDcFrZZ2CcFgkQB4t7ZifZL-B8_a/view?usp=drivesdk)
 
 ---
 
