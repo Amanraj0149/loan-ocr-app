@@ -124,10 +124,9 @@ You can view the recorded demo video with voiceover here:
 
 ---
 
-📄 Report
-You can download the full project report here:
+## Report
 
-📘![Project_Report]( LoanOcrProject_Report_CT20244436390.pdf)
+📥 **[Download Final Project Report (PDF)](https://github.com/Amanraj0149/loan-ocr-app/raw/main/LoanOcrProject_Report_CT20244436390.pdf)**
 
 
 ---
