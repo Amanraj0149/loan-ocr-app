@@ -120,14 +120,15 @@ Then open http://localhost:3000 in your browser.
 
 You can view the recorded demo video with voiceover here:
 
-📹 [Demo Video Link](#) ← Replace this with your video URL
+📹 [Demo Video Link](https://drive.google.com/file/d/1QKSvfDcFrZZ2CcFgkQB4t7ZifZL-B8_a/view?usp=drive_link)
 
 ---
 
-## 📄 Report
+📄 Report
+You can download the full project report here:
 
-See the attached PDF for full details:
-📘 OCR_Loan_Processing_Project_Report.pdf
+📘 LoanOcrProject_Report_CT20244436390.pdf
+
 
 ---
 
@@ -173,7 +174,7 @@ This ensures data accuracy and makes the system human-verifiable before sending 
 ## 👨‍💻 Author
 
 **Aman Raj**  
-GitHub: [https://github.com/your-username](https://github.com/your-username)
+GitHub: [https://github.com/your-username](https://github.com/Amanraj0149)
 
 ---
 
